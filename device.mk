@@ -53,3 +53,6 @@ $(call inherit-product, device/blackberry/sdm660-common/common.mk)
 
 # Shim library for providing missing symbols to fingerprint blobs
 PRODUCT_PACKAGES += libhidl_shim_full
+
+# Bundled keyboard app
+PRODUCT_PACKAGES += Pastiera
