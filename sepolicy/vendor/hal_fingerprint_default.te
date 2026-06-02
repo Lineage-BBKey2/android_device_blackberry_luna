@@ -1,0 +1,10 @@
+# Luna: fingerprint HAL accesses /dev/goodix_fp directly (no gx_fpd daemon)
+# The sdm660-common policy removed these for athena's gx_fpd architecture,
+# but luna's HAL (fingerprint.gf3206) accesses the device node itself.
+allow hal_fingerprint_default gx_fpd_device:chr_file rw_file_perms;
+
+# Luna: HAL communicates with TrustZone directly via libgf_ca
+allow hal_fingerprint_default tee_device:chr_file rw_file_perms;
+
+# Luna: HAL needs uevent socket to receive kernel notifications for finger touches (needed to receive IRQ events from gf_spi driver)
+allow hal_fingerprint_default self:netlink_socket create_socket_perms_no_ioctl;
