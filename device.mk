@@ -54,5 +54,11 @@ $(call inherit-product, device/blackberry/sdm660-common/common.mk)
 # Shim library for providing missing symbols to fingerprint blobs
 PRODUCT_PACKAGES += libhidl_shim_full
 
+# Camera - Shims for OREO camera HAL
+PRODUCT_PACKAGES += \
+    libskia_shim \
+    libjnigraphics_shim \
+    libandroid_shim
+
 # Bundled keyboard app
 PRODUCT_PACKAGES += Pastiera

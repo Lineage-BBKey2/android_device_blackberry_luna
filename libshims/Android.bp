@@ -1,0 +1,9 @@
+cc_library_shared {
+    name: "libandroid_shim",
+    srcs: ["libandroid_shim.cpp"],
+    shared_libs: [
+        "libnativewindow",
+        "liblog",
+    ],
+    vendor: true,
+}
