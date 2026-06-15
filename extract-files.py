@@ -41,7 +41,9 @@ blob_fixups: blob_fixups_user_type =        {
      'vendor/lib64/libvendor.goodix.hardware.fingerprint@1.0.so',
      'vendor/lib64/libvendor.goodix.hardware.fingerprint@1.0-service.so',
      'vendor/lib64/libgoodixfingerprintd_binder.so',
-     'vendor/lib64/hw/fingerprint.gf3206.so'
+     'vendor/lib64/hw/fingerprint.gf3206.so',
+     'vendor/lib/vendor.qti.hardware.fingerprint@1.0.so',
+     'vendor/lib64/libvendor.goodix.hardware.fingerprint@1.0.so'
         ): blob_fixup()
         .replace_needed('libprotobuf-cpp-lite.so', 'libprotobuf-cpp-lite-v29.so')
         .remove_needed('libandroid_runtime.so')
