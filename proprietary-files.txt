@@ -1677,7 +1677,6 @@ vendor/lib/libchromatix_s5k4h7_luna_zsl_video_ad5816g.so;DISABLE_CHECKELF;DISABL
 vendor/lib/libedge_smooth_hvx_stub.so;DISABLE_CHECKELF;DISABLE_DEPS
 vendor/lib/libmm-color-convertor.so;DISABLE_CHECKELF;DISABLE_DEPS
 vendor/lib/libmm-hdcpmgr.so;DISABLE_CHECKELF;DISABLE_DEPS
-vendor/lib/libmm-omxcore.so;DISABLE_CHECKELF;DISABLE_DEPS
 
 # Camera (Firmware)
 vendor/firmware/cpp_firmware_v1_1_1.fw
@@ -1934,7 +1933,6 @@ vendor/lib/libmmsw_opencl.so;DISABLE_CHECKELF;DISABLE_DEPS
 vendor/lib/libmmsw_platform.so;DISABLE_CHECKELF;DISABLE_DEPS
 vendor/lib64/libmm-color-convertor.so;DISABLE_CHECKELF;DISABLE_DEPS
 vendor/lib64/libmm-hdcpmgr.so;DISABLE_CHECKELF;DISABLE_DEPS
-vendor/lib64/libmm-omxcore.so;DISABLE_CHECKELF;DISABLE_DEPS
 
 #vendor/lib64/libmmosal_proprietary.so;DISABLE_CHECKELF;DISABLE_DEPS
 vendor/lib64/libmmsw_detail_enhancement.so;DISABLE_CHECKELF;DISABLE_DEPS
