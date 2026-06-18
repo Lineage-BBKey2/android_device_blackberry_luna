@@ -59,19 +59,35 @@ blob_fixups: blob_fixups_user_type =        {
         .add_needed('libhidlbase.so')
         .add_needed('libbinder_shim.so')
         .binary_regex_replace(b'/system/etc/firmware', b'/vendor/firmware\x00\x00\x00\x00'),
+
+    # Cams - libmmcamera_interface: skip Main+AUX virtual camera (ID 3) creation
+    # sort_camera_info() BEQ.W → B.W at 0x697e: unconditionally skip dual-camera muxer loops
+    # This seems to be related to portrait-mode stuff as the aux camera works okay without it.
+    'vendor/lib/libmmcamera_interface.so': blob_fixup()
+        .binary_regex_replace(b'\x00\xf0\x58\x82',
+                              b'\x00\xf0\x58\xba'),
+
+    # Cams - OREO iface_modules 0x400 frame drop bug fix (adapted from Athena patch with Luna offset)
+    # + bundle mask fix: prevent premature clear during partial streamoff
+    #   (0x1d8d6: cbnz r0,#skip → b.n #skip — always skip mask clear)
+    'vendor/lib/libmmcamera2_iface_modules.so': blob_fixup()
+        .binary_regex_replace(b'\xef\xf7\x90\xec\x4f\xf0\xff\x30\x05\xb0\xbd\xe8',
+                              b'\xef\xf7\x90\xec\x00\x20\x00\xbf\x05\xb0\xbd\xe8')
+        .binary_regex_replace(b'\x88\xbb\x0f\x99\x41\xf6\x1c\x50\x08\x58\x60\xbb',
+                              b'\x31\xe0\x0f\x99\x41\xf6\x1c\x50\x08\x58\x60\xbb'),
+
     ('vendor/lib/libarcsoft_dualcam_refocus.so',
      'vendor/lib/libdualcameraddm.so',
      'vendor/lib64/libdualcameraddm.so',
-     'vendor/lib/libmmcamera_hdr_gb_lib.so'
-     'vendor/lib/libarcsoft_dualcam_refocus.so',
-     'vendor/lib/libarcsoft_low_light_shot',
+     'vendor/lib/libmmcamera_hdr_gb_lib.so',
+     'vendor/lib/libarcsoft_low_light_shot.so',
      'vendor/lib/libarcsoft_nighthawk.so',
      'vendor/lib/liboptizoom.so',
      'vendor/lib64/liboptizoom.so',
      'vendor/lib/libchromaflash.so',
      'vendor/lib64/libchromaflash.so',
      'vendor/lib/libseemore.so',
-     'vendor/lib64/libseemore.so'
+     'vendor/lib64/libseemore.so',
      'vendor/lib/libvideobokeh.so',
      'vendor/lib64/libvideobokeh.so',
      'vendor/lib/libVDSuperPhotoAPI.so',
