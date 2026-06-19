@@ -48,8 +48,15 @@ PRODUCT_PACKAGES += \
     libbinder_shim.vendor \
     libfakelogprint
 
+# Tell common.mk to skip its default media profiles
+TARGET_USES_CUSTOM_MEDIA_PROFILES := true
+
 # Inherit from BlackBerry sdm660-common
 $(call inherit-product, device/blackberry/sdm660-common/common.mk)
+
+# Add custom luna-specific media profile
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/media/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
 
 # Shim library for providing missing symbols to fingerprint blobs
 PRODUCT_PACKAGES += libhidl_shim_full
