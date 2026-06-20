@@ -15,6 +15,9 @@
 
 DEVICE_PATH := device/blackberry/luna
 
+# Vendor blobs
+$(call inherit-product, vendor/blackberry/luna/luna-vendor.mk)
+
 # Set Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 27
 
@@ -22,17 +25,11 @@ PRODUCT_SHIPPING_API_LEVEL := 27
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay
 
-# Setup dalvik vm configs
-$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
-
-# Get non-open-source specific aspects
-$(call inherit-product, vendor/blackberry/luna/luna-vendor.mk)
-
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
-# Luna audio configs
+# Audio configs
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/audio/,$(TARGET_COPY_OUT_VENDOR)/etc)
 
@@ -40,13 +37,23 @@ PRODUCT_COPY_FILES += \
 TARGET_SCREEN_HEIGHT := 1620
 TARGET_SCREEN_WIDTH := 1080
 
+# Camera shims
+PRODUCT_PACKAGES += \
+    libskia_shim \
+    libjnigraphics_shim \
+    libandroid_shim
+
+# Dalvik
+$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
+
 # GMS
 PRODUCT_GMS_CLIENTID_BASE := android-blackberry
 
-# Goodix - libbinder shim
+# Goodix/fingerprint sensor shims
 PRODUCT_PACKAGES += \
     libbinder_shim.vendor \
-    libfakelogprint
+    libfakelogprint \
+    libhidl_shim_full
 
 # Tell common.mk to skip its default media profiles
 TARGET_USES_CUSTOM_MEDIA_PROFILES := true
@@ -57,15 +64,6 @@ $(call inherit-product, device/blackberry/sdm660-common/common.mk)
 # Add custom luna-specific media profile
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/media/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
-
-# Shim library for providing missing symbols to fingerprint blobs
-PRODUCT_PACKAGES += libhidl_shim_full
-
-# Camera - Shims for OREO camera HAL
-PRODUCT_PACKAGES += \
-    libskia_shim \
-    libjnigraphics_shim \
-    libandroid_shim
 
 # Bundled keyboard app
 PRODUCT_PACKAGES += Pastiera
