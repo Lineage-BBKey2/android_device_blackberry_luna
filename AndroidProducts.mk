@@ -16,8 +16,3 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/lineage_luna.mk
-
-COMMON_LUNCH_CHOICES := \
-    lineage_luna-eng \
-    lineage_luna-user \
-    lineage_luna-userdebug
