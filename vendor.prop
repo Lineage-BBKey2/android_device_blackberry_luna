@@ -2,7 +2,7 @@
 debug.ftm.mixerpath=/vendor/etc/mixer_paths_bbe100.xml
 
 # Bluetooth
-bluetooth.device.default_name=BlackBerry Key2 LE
+bluetooth.device.default_name=BlackBerry KEY2 LE
 
 # Camera
 camera.ans.yproc.int.main=20,20,20,20

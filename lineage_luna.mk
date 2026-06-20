@@ -17,7 +17,7 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 PRODUCT_BRAND := BlackBerry
 PRODUCT_DEVICE := luna
 PRODUCT_MANUFACTURER := TCL Technology
-PRODUCT_MODEL := BlackBerry Key2 LE
+PRODUCT_MODEL := BlackBerry KEY2 LE
 PRODUCT_NAME := lineage_luna
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
