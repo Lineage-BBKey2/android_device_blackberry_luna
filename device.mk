@@ -64,6 +64,3 @@ $(call inherit-product, device/blackberry/sdm660-common/common.mk)
 # Add custom luna-specific media profile
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/media/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
-
-# Bundled keyboard app
-PRODUCT_PACKAGES += Pastiera
