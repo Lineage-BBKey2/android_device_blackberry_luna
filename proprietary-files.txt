@@ -198,8 +198,6 @@ vendor/etc/camera/s5k3p8sp_chromatix.xml
 vendor/etc/camera/s5k4h7_athena_chromatix.xml
 vendor/etc/camera/s5k4h7_luna_chromatix.xml
 vendor/etc/camera/s5k4h7_minerva_chromatix.xml
-vendor/etc/permissions/android.hardware.camera.flash-autofocus.xml
-vendor/etc/permissions/android.hardware.camera.front.xml
 vendor/lib/libactuator_ad5816g.so;DISABLE_CHECKELF;DISABLE_DEPS
 vendor/lib/libactuator_ad5823.so;DISABLE_CHECKELF;DISABLE_DEPS
 vendor/lib/libactuator_ak7345.so;DISABLE_CHECKELF;DISABLE_DEPS
@@ -1981,8 +1979,6 @@ vendor/firmware/goodixfp.b05
 vendor/firmware/goodixfp.b06
 
 # Fingerprint
--vendor/app/QFingerprintService/QFingerprintService.apk
-vendor/bin/qfp-daemon;DISABLE_CHECKELF
 vendor/lib/vendor.qti.hardware.fingerprint@1.0.so
 vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so
 vendor/lib64/libqfp-service.so
