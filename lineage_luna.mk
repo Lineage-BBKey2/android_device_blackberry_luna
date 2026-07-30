@@ -26,3 +26,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceProduct=Luna \
     DeviceName=bbe100 \
     SystemDevice=bbe100
+
+# OTA Updater
+PRODUCT_PROPERTY_OVERRIDES += \
+    lineage.updater.uri=https://raw.githubusercontent.com/Lineage-BBKey2LE/distribution/main/{device}.json
