@@ -48,7 +48,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 
 # Device settings
 PRODUCT_PACKAGES += \
-    DeviceSettings
+    DeviceSettings_luna
 
 # GMS
 PRODUCT_GMS_CLIENTID_BASE := android-blackberry
