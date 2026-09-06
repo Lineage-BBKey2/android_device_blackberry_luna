@@ -25,7 +25,7 @@
     <string name="keyboard_backlight_timeout_title">Keyboard backlight timeout</string>
     <string name="keyboard_backlight_timeout_summary">Time before keyboard backlight turns off</string>
     <string name="keyboard_only_when_pressed_title">Only light on press</string>
-    <string name="keyboard_only_when_pressed_summary">Only show keyboard backlight when pressed</string>
+    <string name="keyboard_only_when_pressed_summary">Keyboard backlight only turns on with key press</string>
     <string name="button_backlight_category">Button backlight</string>
     <string name="button_adaptive_brightness_title">Button adaptive brightness</string>
     <string name="button_adaptive_brightness_summary">Navigation button backlight scales with screen brightness</string>
@@ -34,7 +34,7 @@
     <string name="button_backlight_timeout_title">Button backlight timeout</string>
     <string name="button_backlight_timeout_summary">Time before button backlight turns off</string>
     <string name="button_only_when_pressed_title">Only light on press</string>
-    <string name="button_only_when_pressed_summary">Only show button backlight when pressed</string>
+    <string name="button_only_when_pressed_summary">Button backlight only turns on when pressed</string>
 
     <string name="timeout_disabled">Disabled</string>
     <string name="timeout_1s">1 second</string>
