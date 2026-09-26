@@ -6,6 +6,7 @@
 package com.blackberry.settings;
 
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.provider.Settings;
 
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
@@ -15,6 +16,8 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SeekBarPreference;
 import androidx.preference.SwitchPreference;
+
+import java.io.File;
 
 public class DeviceSettingsActivity extends CollapsingToolbarBaseActivity {
 
@@ -33,17 +36,36 @@ public class DeviceSettingsActivity extends CollapsingToolbarBaseActivity {
     public static class DeviceSettingsFragment extends PreferenceFragmentCompat
             implements Preference.OnPreferenceChangeListener {
 
-        private static final String KEY_PIN_INPUT = "keyboard_pin_input";
-        private static final String KEY_SHOW_IME = "show_ime_with_hard_keyboard";
-        private static final String KEY_IME_SWITCHER = "ime_switcher_shortcut";
-        private static final String KEY_ADPT_KEYBOARD_BRIGHTNESS = "keyboard_adaptive_brightness";
-        private static final String KEY_KEYBOARD_BRIGHTNESS = "keyboard_brightness";
-        private static final String KEY_KEYBOARD_TIMEOUT = "keyboard_backlight_timeout";
-        private static final String KEY_KEYBOARD_ONLY_PRESSED = "keyboard_backlight_only_when_pressed";
-        private static final String KEY_ADPT_BUTTON_BRIGHTNESS = "button_adaptive_brightness";
-        private static final String KEY_BUTTON_BRIGHTNESS = "button_brightness";
-        private static final String KEY_BUTTON_TIMEOUT = "button_backlight_timeout";
-        private static final String KEY_BUTTON_ONLY_PRESSED = "button_only_when_pressed";
+        private static final String KEY_PIN_INPUT =
+                "keyboard_pin_input";
+        private static final String KEY_SHOW_IME =
+                "show_ime_with_hard_keyboard";
+        private static final String KEY_IME_SWITCHER =
+                "ime_switcher_shortcut";
+        private static final String KEY_ADPT_KEYBOARD_BRIGHTNESS =
+                "keyboard_adaptive_brightness";
+        private static final String KEY_KEYBOARD_BRIGHTNESS =
+                "keyboard_brightness";
+        private static final String KEY_KEYBOARD_TIMEOUT =
+                "keyboard_backlight_timeout";
+        private static final String KEY_KEYBOARD_ONLY_PRESSED =
+                "keyboard_backlight_only_when_pressed";
+        private static final String KEY_ADPT_BUTTON_BRIGHTNESS =
+                "button_adaptive_brightness";
+        private static final String KEY_BUTTON_BRIGHTNESS =
+                "button_brightness";
+        private static final String KEY_BUTTON_TIMEOUT =
+                "button_backlight_timeout";
+        private static final String KEY_BUTTON_ONLY_PRESSED =
+                "button_only_when_pressed";
+        private static final String KEY_HOST_DT2W =
+                "host_dt2w_enable";
+        private static final String PROP_HOST_DT2W =
+                "persist.vendor.focaltech.host_dt2w";
+        private static final String SYSFS_HOST_DT2W =
+                "/sys/devices/virtual/tp_device/tp_gesture/host_dt2w_enable";
+        private static final String KEY_TOUCHSCREEN_CATEGORY =
+                "touchscreen_category";
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -161,6 +183,21 @@ public class DeviceSettingsActivity extends CollapsingToolbarBaseActivity {
                 btnPressed.setChecked(current == 1);
                 btnPressed.setOnPreferenceChangeListener(this);
             }
+
+            // FocalTech host-side double-tap-to-wake compatibility mode
+            Preference touchscreenCategory =
+                    findPreference(KEY_TOUCHSCREEN_CATEGORY);
+            SwitchPreference hostDt2w = findPreference(KEY_HOST_DT2W);
+            if (hostDt2w != null) {
+                if (new File(SYSFS_HOST_DT2W).exists()) {
+                    hostDt2w.setChecked(SystemProperties.getBoolean(
+                            PROP_HOST_DT2W, false));
+                    hostDt2w.setOnPreferenceChangeListener(this);
+                } else if (touchscreenCategory != null) {
+                    // Hide this FocalTech-only category on other panels.
+                    getPreferenceScreen().removePreference(touchscreenCategory);
+                }
+            }
         }
 
         @Override
@@ -258,6 +295,11 @@ public class DeviceSettingsActivity extends CollapsingToolbarBaseActivity {
                             getContext().getContentResolver(),
                             "button_backlight_only_when_pressed",
                             checked ? 1 : 0);
+                    return true;
+                }
+                case KEY_HOST_DT2W: {
+                    boolean enabled = (boolean) newValue;
+                    SystemProperties.set(PROP_HOST_DT2W, enabled ? "1" : "0");
                     return true;
                 }
             }
