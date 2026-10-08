@@ -421,6 +421,24 @@
     <path name="echo-reference headphones-44.1">
     </path>
 
+    <!-- PCM VoIP uses echo-reference-voip* in communication mode. -->
+    <!-- Reuse Luna's device-specific EC reference routes. -->
+    <path name="echo-reference-voip">
+        <path name="echo-reference speaker" />
+    </path>
+
+    <path name="echo-reference-voip handset">
+        <path name="echo-reference" />
+    </path>
+
+    <path name="echo-reference-voip headphones">
+        <path name="echo-reference headphones" />
+    </path>
+
+    <path name="echo-reference-voip headphones-44.1">
+        <path name="echo-reference headphones-44.1" />
+    </path>
+
     <path name="deep-buffer-playback">
         <ctl name="INT0_MI2S_RX Audio Mixer MultiMedia1" value="1" />
     </path>
