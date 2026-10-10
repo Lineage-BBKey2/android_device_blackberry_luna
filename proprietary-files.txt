@@ -1995,6 +1995,10 @@ vendor/firmware/a512_zap.b01
 vendor/firmware/a512_zap.b02
 vendor/firmware/a512_zap.mdt
 
+# Touchscreen firmware - Luna ACT575 (stock system/etc/firmware/synaptics)
+# Keep the Luna-specific configuration; do not substitute the Athena image.
+vendor/firmware/synaptics/athena_tp.img|15cf506dc6401d00fd1c0ea5cd19060a1d06f227
+
 # Sensors
 vendor/etc/sensors/sensor_def_qcomdev.conf
 

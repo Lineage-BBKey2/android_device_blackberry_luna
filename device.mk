@@ -46,6 +46,10 @@ PRODUCT_PACKAGES += \
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 
+# Recovery touchscreen firmware (Luna ACT575, available without mounting vendor)
+PRODUCT_COPY_FILES += \
+    vendor/blackberry/luna/proprietary/vendor/firmware/synaptics/athena_tp.img:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/firmware/synaptics/athena_tp.img
+
 # Device settings
 PRODUCT_PACKAGES += \
     BlackBerrySettings_luna
