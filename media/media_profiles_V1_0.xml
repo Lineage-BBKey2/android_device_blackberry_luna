@@ -523,7 +523,7 @@
         <ImageDecoding memCap="20000000" />
 
     </CamcorderProfiles>
-    <!-- Logical Camera -->
+    <!-- Secondary rear camera (0.9x). -->
     <CamcorderProfiles cameraId="2">
 
     <EncoderProfile quality="low" fileFormat="3gp" duration="30">
@@ -541,9 +541,9 @@
 
     <EncoderProfile quality="high" fileFormat="mp4" duration="30">
       <Video codec="h264"
-             bitRate="42000000"
-             width="3840"
-             height="2160"
+             bitRate="34000000"
+             width="2592"
+             height="1944"
              frameRate="30" />
 
       <Audio codec="aac"
@@ -618,13 +618,11 @@
     </EncoderProfile>
 
 
-<!--
-     Below profile modified to reflect Luna's secondary rear camera's max resolution of 
-     2592x1944. LOS Aperture app doesn't support adding non-standard resolution strings 
-     to its configuration array, therefore this is needed to prevent Aperture crashing 
-     when selecting 4K resolution for secondary rear camera. Unfortinately the app
-     will still show 4K/2160p, but the recorded video will end up as 2592x1944.
--->
+    <!--
+         Use the standard 2160p quality slot for this camera's actual 2592x1944
+         output. Consumers must read the profile dimensions instead of assuming
+         3840x2160. Keep high and the highest time-lapse profiles aligned with it.
+    -->
     <EncoderProfile quality="2160p" fileFormat="mp4" duration="30">
       <Video codec="h264"
             bitRate="34000000"
@@ -669,9 +667,9 @@
 
     <EncoderProfile quality="timelapsehigh" fileFormat="mp4" duration="30">
       <Video codec="h264"
-             bitRate="42000000"
-             width="3840"
-             height="2160"
+             bitRate="34000000"
+             width="2592"
+             height="1944"
              frameRate="30" />
 
       <!-- audio setting is ignored -->
@@ -776,9 +774,9 @@
 
     <EncoderProfile quality="timelapse2160p" fileFormat="mp4" duration="30">
       <Video codec="h264"
-            bitRate="42000000"
-            width="3840"
-            height="2160"
+            bitRate="34000000"
+            width="2592"
+            height="1944"
             frameRate="30" />
 
       <Audio codec="aac"
