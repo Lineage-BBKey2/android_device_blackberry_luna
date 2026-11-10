@@ -29,6 +29,10 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
+# Normal cellular earpiece: use factory gain indices 9..0.
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.vendor.audio.voice.earpiece.max_index=9
+
 # Audio configs
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/audio/,$(TARGET_COPY_OUT_VENDOR)/etc)
