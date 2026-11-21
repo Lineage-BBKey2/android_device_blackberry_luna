@@ -99,8 +99,13 @@ blob_fixups: blob_fixups_user_type =        {
     'vendor/lib/libmmcamera_llvd.so': blob_fixup()
         .remove_needed('libllvd_smore.so'),
     # camera.sdm660.so — OREO HAL, libskia no longer in vendor
+    # HAL1 close must finish queued initialization before stopping its worker.
+    # Keep the synchronous STOP command, but enqueue it after existing work.
     'vendor/lib/hw/camera.sdm660.so': blob_fixup()
-        .replace_needed('libskia.so', 'libskia_shim.so'),
+        .replace_needed('libskia.so', 'libskia_shim.so')
+        .binary_regex_replace(
+            b'\x04\xf6\x5c\x28\x49\x02\x21\x01\x22\x5b\x00\x01\x5d\x5c\x23\x48\x46\x6a\xf0\xd1\xf8\x48\x46\x6a\xf0\xae\xf8',
+            b'\x04\xf6\x28\x49\x02\x21\x01\x22\x00\x23\x48\x46\x6a\xf0\xd1\xf8\x48\x46\x6a\xf0\xae\xf8'),
     # libjnigraphics and libandroid not available in vendor
     'vendor/lib/libcamera_imgproc.so': blob_fixup()
         .remove_needed('libjnigraphics.so'),
